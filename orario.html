@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orario Appuntamento</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+
+        .data-orario {
+            margin: 20px 0;
+        }
+
+        button {
+            background-color: #ff69b4;
+            color: white;
+            font-size: 1.5em;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+        }
+
+        select, input {
+            font-size: 1.2em;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="domanda">Quando vuoi andare a <span id="destinazione"></span>?</h1>
+    <div class="data-orario">
+        <label for="data">Scegli la data e l'orario:</label>
+        <br>
+        <input type="date" id="data" name="data">
+        <br>
+        <input type="time" id="orario" name="orario">
+        <br><br>
+        <button onclick="conferma()">Conferma Appuntamento</button>
+    </div>
+
+    <script>
+        // Ottieni la destinazione dalla query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const destinazione = urlParams.get('destinazione');
+
+        // Cambia il contenuto del testo per includere la destinazione scelta
+        document.getElementById('destinazione').textContent = destinazione;
+
+        // Funzione per confermare l'appuntamento
+        function conferma() {
+            const data = document.getElementById('data').value;
+            const orario = document.getElementById('orario').value;
+
+            if (data && orario) {
+                alert(`Appuntamento confermato per il ${data} alle ${orario} al ${destinazione}!`);
+            } else {
+                alert("Per favore, scegli una data e un orario.");
+            }
+        }
+    </script>
+</body>
+</html>
