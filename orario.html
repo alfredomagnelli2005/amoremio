@@ -61,26 +61,22 @@
         <br><br>
         <button onclick="conferma()">Conferma Appuntamento</button>
     </div>
+    
+<script>
+    function conferma() {
+        const data = document.getElementById('data').value;
+        const orario = document.getElementById('orario').value;
+        const destinazione = new URLSearchParams(window.location.search).get('destinazione');
 
-    <script>
-        // Ottieni la destinazione dalla query string
-        const urlParams = new URLSearchParams(window.location.search);
-        const destinazione = urlParams.get('destinazione');
-
-        // Cambia il contenuto del testo per includere la destinazione scelta
-        document.getElementById('destinazione').textContent = destinazione;
-
-        // Funzione per confermare l'appuntamento
-        function conferma() {
-            const data = document.getElementById('data').value;
-            const orario = document.getElementById('orario').value;
-
-            if (data && orario) {
-                alert(`Appuntamento confermato per il ${data} alle ${orario} al ${destinazione}!`);
-            } else {
-                alert("Per favore, scegli una data e un orario.");
-            }
+        if (data && orario) {
+            // Crea il link di conferma con i parametri
+            const url = `conferma.html?data=${data}&orario=${orario}&destinazione=${destinazione}`;
+            window.location.href = url;  // Reindirizza alla pagina di conferma
+        } else {
+            alert("Per favore, scegli una data e un orario.");
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
