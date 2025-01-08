@@ -68,7 +68,7 @@
         }
 
         #no.spostato {
-            animation: moveNo 1s infinite;
+            animation: moveNo 1s ease;
         }
     </style>
 </head>
@@ -82,11 +82,21 @@
     </div>
 
     <script>
+        // Funzione per muovere il bottone "No"
         function muoviBottone() {
-            // Applica la classe per l'animazione che sposta il bottone "No"
-            document.getElementById("no").classList.add("spostato");
-            // Impedisce ulteriori click
-            document.getElementById("no").disabled = true;
+            const bottoneNo = document.getElementById("no");
+
+            // Se il bottone non ha ancora la classe "spostato", la aggiungiamo per attivare l'animazione
+            if (!bottoneNo.classList.contains("spostato")) {
+                bottoneNo.classList.add("spostato");
+            } else {
+                // Se il bottone è già spostato, lo ripristiniamo
+                bottoneNo.classList.remove("spostato");
+            }
+
+            // Impedisce ulteriori click (si sposterà solo una volta ogni volta che si clicca)
+            bottoneNo.disabled = false;
+            bottoneNo.disabled = true;
         }
     </script>
 </body>
